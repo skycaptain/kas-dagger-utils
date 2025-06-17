@@ -1,4 +1,4 @@
-// Kas Utils
+// kas-dagger-utils
 //
 // See https://semantic-release.gitbook.io/ for usage.
 //

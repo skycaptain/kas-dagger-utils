@@ -1,4 +1,4 @@
-# Kas Utils
+# kas-dagger-utils
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
