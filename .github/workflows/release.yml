@@ -1,0 +1,50 @@
+# Kas Utils
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+---
+name: Release
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read  # checkout the repository
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # publish GitHub releases
+      issues: write # comment on released issues
+      pull-requests: write # comment on released PRs
+      id-token: write # enable OIDC for npm provenance
+    environment: pypi
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false # allow pushing changes back
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "lts/*"
+
+      - name: Install dependencies
+        run: npm clean-install
+
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '>=3.9 <3.14'
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: npx --no-install -- semantic-release

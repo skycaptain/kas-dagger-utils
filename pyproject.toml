@@ -1,0 +1,21 @@
+# Kas Utils
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+[project]
+name = "kas-dagger-utils"
+version = "0.1.0"
+description = "A collection of command-line utilities to enhance kas functionality within Dagger workflows"
+license = "BSD-3-Clause"
+requires-python = ">=3.9"
+dependencies = [
+  "kas (>=4.7,<5.0)",
+  "pyyaml (>=6.0.2,<7.0.0)"
+]
+
+[tool.poetry.scripts]
+kas-merge-configs = "kas_dagger_utils.bin.kas_merge_configs:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
