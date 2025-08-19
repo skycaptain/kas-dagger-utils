@@ -105,33 +105,25 @@ referencing = ">=0.31.0"
 
 [[package]]
 name = "kas"
-version = "4.7"
+version = "4.8.2"
 description = "Setup tool for bitbake based projects"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "kas-4.7.tar.gz", hash = "sha256:2b654f6a3c83b6aea3b7d3ee5315572f34e865fcd24042d4ad7cec09de8b7678"},
+    {file = "kas-4.8.2.tar.gz", hash = "sha256:98dd0f310b3534d897005638c3ac4d7c044f68d006ce27b60885912c00101f53"},
 ]
 
 [package.dependencies]
-distro = ">=1.0.0,<2"
-GitPython = ">=3.1.0,<4"
-jsonschema = ">=2.5.0,<5"
-kconfiglib = ">=14.1.0,<15"
-PyYAML = ">=3.0,<7"
+distro = ">=1,<2"
+gitpython = ">=3.1,<4"
+jsonschema = ">=3.2,<5"
+pyyaml = ">=3,<7"
 
-[[package]]
-name = "kconfiglib"
-version = "14.1.0"
-description = "A flexible Python Kconfig implementation"
-optional = false
-python-versions = ">=2.7,!=3.0.*,!=3.1.*"
-groups = ["main"]
-files = [
-    {file = "kconfiglib-14.1.0-py2.py3-none-any.whl", hash = "sha256:edcd35a20e7e138a9a9e96149027f805f785e818d2eae400b6fa8b0c8845114a"},
-    {file = "kconfiglib-14.1.0.tar.gz", hash = "sha256:bed2cc2216f538eca4255a83a4588d8823563cdd50114f86cf1a2674e602c93c"},
-]
+[package.extras]
+test = ["kas[tui]", "kas[verify]", "pytest (>=6,<9)"]
+tui = ["kconfiglib (>=14.1,<15)"]
+verify = ["python-gnupg (>=0.4.0,<1)"]
 
 [[package]]
 name = "pyyaml"
